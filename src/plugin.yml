@@ -2,5 +2,10 @@ name: HacroSkript
 version: 1.0
 main: fr.acilaw.hacroskript.Main
 author: Acilaw
-awareness: # Add this line
-- !@UTF-8
+commands:
+  gambling:
+    description: Envoie le message du pnj gambling
+  poubelle:
+    description: Redirige la commande vers trash
+  pt:
+    description: Redirige la commande vers playtime
