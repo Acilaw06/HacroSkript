@@ -9,7 +9,7 @@ public class Main extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        System.out.println("§8[§eHacro§6Skript§8] §a Le plugin vient de démarrer !");
+        System.out.println("§8[§eHacro§6Staff§8] §a Le plugin vient de démarrer !");
         this.getCommand("staff").setExecutor(new Staff());
         this.getCommand("randomTeleportPlayer").setExecutor(new randomTeleportPlayer());
         getServer().getPluginManager().registerEvents(new StaffEvents(),this);
@@ -18,6 +18,6 @@ public class Main extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        System.out.println("§8[§eHacro§6Skript§8] §c Le plugin vient s'éteindre !");
+        System.out.println("§8[§eHacro§6Staff§8] §c Le plugin vient s'éteindre !");
     }
 }
