@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/HacroSkript.iml" filepath="$PROJECT_DIR$/HacroSkript.iml" />
+      <module fileurl="file://$PROJECT_DIR$/HacroStaff.iml" filepath="$PROJECT_DIR$/HacroStaff.iml" />
     </modules>
   </component>
 </project>

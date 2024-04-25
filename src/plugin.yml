@@ -1,13 +1,9 @@
-name: HacroSkript
+name: HacroStaff
 version: 1.0
-main: fr.acilaw.hacroskript.Main
+main: fr.acilaw.hacrostaff.Main
 author: Acilaw
 commands:
-  gambling:
-    description: Envoie le message du pnj gambling
-  poubelle:
-    description: Redirige la commande vers trash
-  pt:
-    description: Redirige la commande vers playtime
   staff:
-    description: Tkt
+    description: inventaire staff pour les modérateurs
+  randomTeleportPlayer:
+    description: permet de se tp à un joueur aléatoire

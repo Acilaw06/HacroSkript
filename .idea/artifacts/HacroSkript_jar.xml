@@ -2,7 +2,7 @@
   <artifact type="jar" name="HacroSkript:jar">
     <output-path>$USER_HOME$/OneDrive/Bureau/Serveur/plugins</output-path>
     <root id="archive" name="HacroSkript.jar">
-      <element id="module-output" name="HacroSkript" />
+      <element id="module-output" name="HacroStaff" />
     </root>
   </artifact>
 </component>
