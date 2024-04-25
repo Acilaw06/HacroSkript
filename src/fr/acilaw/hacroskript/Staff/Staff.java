@@ -4,6 +4,7 @@ import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -13,52 +14,91 @@ import java.util.ArrayList;
 public class Staff implements CommandExecutor {
 
     // Kill Item
-    public ItemStack killItem;
-    public ArrayList<String> loreKillItem;
-
-
-    // Fly Item
-    public ItemStack flyItem;
-    public ArrayList<String> loreFlyItem;
+    public ItemStack ItemName;
+    public ArrayList<String> ItemLore;
 
 
     public Staff(){
-        KillItem();
-        FlyItem();
     }
 
     public void KillItem(){
-        killItem = new ItemStack(Material.STICK);
-        loreKillItem = new ArrayList<String>();
+        ItemName = new ItemStack(Material.SHEARS);
+        ItemLore = new ArrayList<String>();
 
-        ItemMeta killMeta = killItem.getItemMeta();
+        ItemMeta killMeta = ItemName.getItemMeta();
         killMeta.setDisplayName("§cTue un joueur"); // You should use color codes with § symbol
-        loreKillItem.add("§b");
-        loreKillItem.add("§eCet objet permet de §atuer un joueur");
-        loreKillItem.add("§elorsque tu effectues un §aclique droit");
-        loreKillItem.add("§esur le §ajoueur concerné");
-        loreKillItem.add("§b");
-        killMeta.setLore(loreKillItem);
+        ItemLore.add("§b");
+        ItemLore.add("§eCet objet permet de §atuer un joueur");
+        ItemLore.add("§elorsque tu effectues un §aclique droit");
+        ItemLore.add("§esur le §ajoueur concerné");
+        ItemLore.add("§b");
+        killMeta.setLore(ItemLore);
 
-        // Apply meta to the item
-        killItem.setItemMeta(killMeta);
+        ItemName.setItemMeta(killMeta);
     }
 
     public void FlyItem(){
-        flyItem = new ItemStack(Material.FEATHER);
-        loreFlyItem = new ArrayList<String>();
+        ItemName = new ItemStack(Material.FEATHER);
+        ItemLore = new ArrayList<String>();
 
-        ItemMeta killMeta = flyItem.getItemMeta();
-        killMeta.setDisplayName("§bActive le fly"); // You should use color codes with § symbol
-        loreFlyItem.add("§b");
-        loreFlyItem.add("§eCet objet permet §ad'activer le fly §esur");
-        loreFlyItem.add("§ele serveur, clique droit pour §aactiver");
-        loreFlyItem.add("§aou désactiver");
-        loreFlyItem.add("§b");
-        killMeta.setLore(loreFlyItem);
+        ItemMeta killMeta = ItemName.getItemMeta();
+        killMeta.setDisplayName("§bActive le fly");
+        ItemLore.add("§b");
+        ItemLore.add("§eCet objet permet §ad'activer le fly §esur");
+        ItemLore.add("§ele serveur, clique droit pour §aactiver");
+        ItemLore.add("§aou désactiver");
+        ItemLore.add("§b");
+        killMeta.setLore(ItemLore);
 
-        // Apply meta to the item
-        flyItem.setItemMeta(killMeta);
+        ItemName.setItemMeta(killMeta);
+    }
+
+    public void GodItem(){
+        ItemName = new ItemStack(Material.NETHER_STAR);
+        ItemLore = new ArrayList<String>();
+
+        ItemMeta killMeta = ItemName.getItemMeta();
+        killMeta.setDisplayName("§eActive le God");
+        ItemLore.add("§b");
+        ItemLore.add("§eCet objet permet §ad'activer le God §esur");
+        ItemLore.add("§ele serveur, clique droit pour §aactiver");
+        ItemLore.add("§aou désactiver");
+        ItemLore.add("§b");
+        killMeta.setLore(ItemLore);
+
+        ItemName.setItemMeta(killMeta);
+    }
+
+    public void SpeedItem(){
+        ItemName = new ItemStack(Material.SUGAR);
+        ItemLore = new ArrayList<String>();
+
+        ItemMeta killMeta = ItemName.getItemMeta();
+        killMeta.setDisplayName("§eActive le Speed");
+        ItemLore.add("§b");
+        ItemLore.add("§eCet objet permet §ad'avoir Speed 2 §esur");
+        ItemLore.add("§ele serveur, clique droit pour §aactiver");
+        ItemLore.add("§aou désactiver");
+        ItemLore.add("§b");
+        killMeta.setLore(ItemLore);
+
+        ItemName.setItemMeta(killMeta);
+    }
+
+    public void knockbackItem(){
+        ItemName = new ItemStack(Material.STICK);
+        ItemLore = new ArrayList<String>();
+
+        ItemMeta killMeta = ItemName.getItemMeta();
+        killMeta.setDisplayName("§eKnockBack Test");
+        ItemLore.add("§b");
+        ItemLore.add("§aFrappe un joueur §epour savoir si il prend");
+        ItemLore.add("§abien des knockbacks §esur le serveur");
+        ItemLore.add("§b");
+        killMeta.setLore(ItemLore);
+        ItemName.addUnsafeEnchantment(Enchantment.KNOCKBACK,2);
+
+        ItemName.setItemMeta(killMeta);
     }
 
 
@@ -66,8 +106,16 @@ public class Staff implements CommandExecutor {
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
         Player player = (Player) commandSender;
         player.getInventory().clear();
-        player.getInventory().addItem(killItem);
-        player.getInventory().addItem(flyItem);
+        KillItem();
+        player.getInventory().addItem(ItemName);
+        FlyItem();
+        player.getInventory().addItem(ItemName);
+        GodItem();
+        player.getInventory().addItem(ItemName);
+        SpeedItem();
+        player.getInventory().addItem(ItemName);
+        knockbackItem();
+        player.getInventory().addItem(ItemName);
         return true;
     }
 
