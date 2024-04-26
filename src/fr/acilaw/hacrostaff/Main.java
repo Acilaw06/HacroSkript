@@ -3,9 +3,12 @@ package fr.acilaw.hacrostaff;
 import fr.acilaw.hacrostaff.Staff.Staff;
 import fr.acilaw.hacrostaff.Staff.StaffEvents;
 import fr.acilaw.hacrostaff.Staff.randomTeleportPlayer;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public class Main extends JavaPlugin {
+public class Main extends JavaPlugin implements Listener {
 
     @Override
     public void onEnable() {

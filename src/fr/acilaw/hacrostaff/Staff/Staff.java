@@ -5,10 +5,11 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import java.util.ArrayList;
+import java.util.*;
 
 public class Staff implements CommandExecutor {
 
@@ -16,9 +17,7 @@ public class Staff implements CommandExecutor {
     public ItemStack ItemName;
     public ArrayList<String> ItemLore;
 
-
-    public Staff(){
-    }
+    public HashMap<UUID, Boolean> staffActive = new HashMap<>();
 
     public void KillItem(){
         ItemName = new ItemStack(Material.SHEARS);
@@ -165,33 +164,42 @@ public class Staff implements CommandExecutor {
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
         Player player = (Player) commandSender;
         if(player.hasPermission("group.moderateur")){
-            player.getInventory().clear();
-            KillItem();
-            player.getInventory().addItem(ItemName);
-            FlyItem();
-            player.getInventory().addItem(ItemName);
-            GodItem();
-            player.getInventory().addItem(ItemName);
-            SpeedItem();
-            player.getInventory().addItem(ItemName);
-            knockbackItem();
-            player.getInventory().addItem(ItemName);
-            CPSItem();
-            player.getInventory().addItem(ItemName);
-            VanishItem();
-            player.getInventory().addItem(ItemName);
-            randomTeleportItem();
-            player.getInventory().addItem(ItemName);
-            invseeItem();
-            player.getInventory().addItem(ItemName);
-            return true;
+
+            if(!staffActive.containsKey(player.getUniqueId()) || !staffActive.get(player.getUniqueId())){
+
+                player.getInventory().clear();
+
+                staffActive.put(((Player) commandSender).getUniqueId(), true);
+                player.sendMessage("§8[§eCrom§6Chat§8] §aTu es passé en mode staff");
+
+                KillItem();
+                player.getInventory().addItem(ItemName);
+                FlyItem();
+                player.getInventory().addItem(ItemName);
+                GodItem();
+                player.getInventory().addItem(ItemName);
+                SpeedItem();
+                player.getInventory().addItem(ItemName);
+                knockbackItem();
+                player.getInventory().addItem(ItemName);
+                CPSItem();
+                player.getInventory().addItem(ItemName);
+                VanishItem();
+                player.getInventory().addItem(ItemName);
+                randomTeleportItem();
+                player.getInventory().addItem(ItemName);
+                invseeItem();
+                player.getInventory().addItem(ItemName);
+                return true;
+            }else{
+                ((Player) commandSender).getInventory().clear();
+                staffActive.put(player.getUniqueId(), false);
+                player.sendMessage("§8[§eCrom§6Chat§8] §cTu as quitté le mode staff");
+                return true;
+            }
         }else{
             player.sendMessage("§8[§eCrom§6Chat§8] §cCette commande est inconnue");
             return false;
         }
     }
-
-    // Kill Item
-
-
 }
