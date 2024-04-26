@@ -1,5 +1,6 @@
 package fr.acilaw.hacrostaff.Staff;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.apache.logging.log4j.core.net.Priority;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
@@ -15,13 +16,17 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.*;
 
-public class Staff implements CommandExecutor, Listener {
+public class Staff implements CommandExecutor {
 
     // Kill Item
     public ItemStack ItemName;
     public ArrayList<String> ItemLore;
 
     public HashMap<UUID, Boolean> staffActive = new HashMap<>();
+
+    public HashMap<UUID, Boolean> getStaffActive(){
+        return staffActive;
+    }
 
     public void KillItem(){
         ItemName = new ItemStack(Material.SHEARS);
@@ -196,9 +201,9 @@ public class Staff implements CommandExecutor, Listener {
                 player.getInventory().addItem(ItemName);
 
                 // Activation of fly, vanish and god
-                player.getServer().dispatchCommand(player.getServer().getConsoleSender(), "fly on");
-                player.getServer().dispatchCommand(player.getServer().getConsoleSender(), "vanish on");
-                player.getServer().dispatchCommand(player.getServer().getConsoleSender(), "god on");
+                player.getServer().dispatchCommand(player, "fly on");
+                player.getServer().dispatchCommand(player, "vanish on");
+                player.getServer().dispatchCommand(player, "god on");
 
                 return true;
             }else{
@@ -206,9 +211,9 @@ public class Staff implements CommandExecutor, Listener {
                 staffActive.put(player.getUniqueId(), false);
 
                 // Desactivation of fly, vanish and god
-                player.getServer().dispatchCommand(player.getServer().getConsoleSender(), "fly off");
-                player.getServer().dispatchCommand(player.getServer().getConsoleSender(), "vanish off");
-                player.getServer().dispatchCommand(player.getServer().getConsoleSender(), "god off");
+                player.getServer().dispatchCommand(player, "fly off");
+                player.getServer().dispatchCommand(player, "vanish off");
+                player.getServer().dispatchCommand(player, "god off");
 
                 player.sendMessage("§8[§eCrom§6Chat§8] §cTu as quitté le mode staff");
                 return true;
