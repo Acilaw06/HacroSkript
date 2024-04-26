@@ -1,17 +1,21 @@
 package fr.acilaw.hacrostaff.Staff;
 
+import org.apache.logging.log4j.core.net.Priority;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
+import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.*;
 
-public class Staff implements CommandExecutor {
+public class Staff implements CommandExecutor, Listener {
 
     // Kill Item
     public ItemStack ItemName;
@@ -190,10 +194,22 @@ public class Staff implements CommandExecutor {
                 player.getInventory().addItem(ItemName);
                 invseeItem();
                 player.getInventory().addItem(ItemName);
+
+                // Activation of fly, vanish and god
+                player.getServer().dispatchCommand(player.getServer().getConsoleSender(), "fly on");
+                player.getServer().dispatchCommand(player.getServer().getConsoleSender(), "vanish on");
+                player.getServer().dispatchCommand(player.getServer().getConsoleSender(), "god on");
+
                 return true;
             }else{
                 ((Player) commandSender).getInventory().clear();
                 staffActive.put(player.getUniqueId(), false);
+
+                // Desactivation of fly, vanish and god
+                player.getServer().dispatchCommand(player.getServer().getConsoleSender(), "fly off");
+                player.getServer().dispatchCommand(player.getServer().getConsoleSender(), "vanish off");
+                player.getServer().dispatchCommand(player.getServer().getConsoleSender(), "god off");
+
                 player.sendMessage("§8[§eCrom§6Chat§8] §cTu as quitté le mode staff");
                 return true;
             }
