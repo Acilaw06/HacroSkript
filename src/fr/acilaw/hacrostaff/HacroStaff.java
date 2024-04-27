@@ -12,7 +12,7 @@ public class HacroStaff extends JavaPlugin implements Listener {
     public void onEnable() {
         this.getLogger().info("§8[§eHacro§6Staff§8] §a Le plugin vient de démarrer !");
         this.getCommand("staff").setExecutor(new StaffCommand());
-        this.getCommand("randomTeleportPlayer").setExecutor(new RandomTeleportPlayer());
+        this.getCommand("randomteleportplayer").setExecutor(new RandomTeleportPlayer());
         getServer().getPluginManager().registerEvents(new StaffEvents(),this);
 
     }

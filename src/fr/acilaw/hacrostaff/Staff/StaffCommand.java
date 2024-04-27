@@ -13,8 +13,8 @@ import java.util.*;
 public class StaffCommand implements CommandExecutor {
 
     // Kill Item
-    private ItemStack ItemName;
-    private ArrayList<String> ItemLore;
+    private static ItemStack ItemName;
+    private static ArrayList<String> ItemLore;
 
     public HashMap<UUID, Boolean> staffActive = new HashMap<>();
 
@@ -44,7 +44,7 @@ public class StaffCommand implements CommandExecutor {
                 player.getInventory().addItem(ItemName);
                 vanishItem();
                 player.getInventory().addItem(ItemName);
-                randomTeleportItem();
+                randomteleportItem();
                 player.getInventory().addItem(ItemName);
                 invseeItem();
                 player.getInventory().addItem(ItemName);
@@ -54,7 +54,6 @@ public class StaffCommand implements CommandExecutor {
                 player.getServer().dispatchCommand(player, "vanish on");
                 player.getServer().dispatchCommand(player, "god on");
 
-                return true;
             }else{
                 ((Player) commandSender).getInventory().clear();
                 staffActive.put(player.getUniqueId(), false);
@@ -65,17 +64,17 @@ public class StaffCommand implements CommandExecutor {
                 player.getServer().dispatchCommand(player, "god off");
 
                 player.sendMessage("§8[§eCrom§6Chat§8] §cTu as quitté le mode staff");
-                return true;
             }
+            return true;
         }else{
             player.sendMessage("§8[§eCrom§6Chat§8] §cCette commande est inconnue");
             return false;
         }
     }
 
-    public void killItem(){
+    private void killItem(){
         ItemName = new ItemStack(Material.SHEARS);
-        ItemLore = new ArrayList<String>();
+        ItemLore = new ArrayList<>();
 
         ItemMeta killMeta = ItemName.getItemMeta();
         killMeta.setDisplayName("§cTue un joueur"); // You should use color codes with § symbol
@@ -89,9 +88,9 @@ public class StaffCommand implements CommandExecutor {
         ItemName.setItemMeta(killMeta);
     }
 
-    public void flyItem(){
+    private void flyItem(){
         ItemName = new ItemStack(Material.FEATHER);
-        ItemLore = new ArrayList<String>();
+        ItemLore = new ArrayList<>();
 
         ItemMeta killMeta = ItemName.getItemMeta();
         killMeta.setDisplayName("§bActive le fly");
@@ -105,9 +104,9 @@ public class StaffCommand implements CommandExecutor {
         ItemName.setItemMeta(killMeta);
     }
 
-    public void godItem(){
+    private void godItem(){
         ItemName = new ItemStack(Material.NETHER_STAR);
-        ItemLore = new ArrayList<String>();
+        ItemLore = new ArrayList<>();
 
         ItemMeta killMeta = ItemName.getItemMeta();
         killMeta.setDisplayName("§eActive le God");
@@ -121,9 +120,9 @@ public class StaffCommand implements CommandExecutor {
         ItemName.setItemMeta(killMeta);
     }
 
-    public void speedItem(){
+    private void speedItem(){
         ItemName = new ItemStack(Material.SUGAR);
-        ItemLore = new ArrayList<String>();
+        ItemLore = new ArrayList<>();
 
         ItemMeta killMeta = ItemName.getItemMeta();
         killMeta.setDisplayName("§eActive le Speed");
@@ -137,9 +136,9 @@ public class StaffCommand implements CommandExecutor {
         ItemName.setItemMeta(killMeta);
     }
 
-    public void knockbackItem(){
+    private void knockbackItem(){
         ItemName = new ItemStack(Material.STICK);
-        ItemLore = new ArrayList<String>();
+        ItemLore = new ArrayList<>();
 
         ItemMeta killMeta = ItemName.getItemMeta();
         killMeta.setDisplayName("§eKnockBack Test");
@@ -153,9 +152,9 @@ public class StaffCommand implements CommandExecutor {
         ItemName.setItemMeta(killMeta);
     }
 
-    public void cpsItem(){
+    private void cpsItem(){
         ItemName = new ItemStack(Material.COMPASS);
-        ItemLore = new ArrayList<String>();
+        ItemLore = new ArrayList<>();
 
         ItemMeta killMeta = ItemName.getItemMeta();
         killMeta.setDisplayName("§eCPS Test");
@@ -168,9 +167,9 @@ public class StaffCommand implements CommandExecutor {
         ItemName.setItemMeta(killMeta);
     }
 
-    public void vanishItem(){
+    private void vanishItem(){
         ItemName = new ItemStack(Material.REDSTONE);
-        ItemLore = new ArrayList<String>();
+        ItemLore = new ArrayList<>();
 
         ItemMeta killMeta = ItemName.getItemMeta();
         killMeta.setDisplayName("§2Vanish");
@@ -183,9 +182,9 @@ public class StaffCommand implements CommandExecutor {
         ItemName.setItemMeta(killMeta);
     }
 
-    public void randomTeleportItem(){
+    private void randomteleportItem(){
         ItemName = new ItemStack(Material.WATCH);
-        ItemLore = new ArrayList<String>();
+        ItemLore = new ArrayList<>();
 
         ItemMeta killMeta = ItemName.getItemMeta();
         killMeta.setDisplayName("§dTéléportation Aléatoire");
@@ -198,9 +197,9 @@ public class StaffCommand implements CommandExecutor {
         ItemName.setItemMeta(killMeta);
     }
 
-    public void invseeItem(){
+    private void invseeItem(){
         ItemName = new ItemStack(Material.CHEST);
-        ItemLore = new ArrayList<String>();
+        ItemLore = new ArrayList<>();
 
         ItemMeta killMeta = ItemName.getItemMeta();
         killMeta.setDisplayName("§dOuvrir l'inventaire");
