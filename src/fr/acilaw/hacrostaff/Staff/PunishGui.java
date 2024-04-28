@@ -1,7 +1,9 @@
 package fr.acilaw.hacrostaff.Staff;
 
 import fr.acilaw.hacrostaff.HacroStaff;
+import fr.acilaw.hacrostaff.Staff.ItemBuilder.GetItem;
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -10,8 +12,11 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
 
-public class PunishGui implements Listener,CommandExecutor {
+
+
+public class PunishGui extends GetItem implements Listener, CommandExecutor {
 
     public PunishGui(HacroStaff plugin){
         Bukkit.getPluginManager().registerEvents(this,plugin);
@@ -49,8 +54,13 @@ public class PunishGui implements Listener,CommandExecutor {
 
         // Create Item
 
-
-
+        inv.setItem(0, getItem(new ItemStack(Material.PAPER), "§cTest", "§c", "§eSalut"));
+        inv.setItem(5, getItem(new ItemStack(Material.PAPER), "§cTest", "§c", "§eSalut"));
+        for(int i = 1; i < inv.getSize(); i++){
+            if(inv.getItem(i) == null){
+                inv.setItem(i, getItem(new ItemStack(Material.STAINED_GLASS_PANE,1, (short) 4), "", ""));
+            }
+        }
         player.openInventory(inv);
 
         return true;

@@ -1,16 +1,16 @@
 package fr.acilaw.hacrostaff.Staff;
 
+import fr.acilaw.hacrostaff.Staff.ItemBuilder.GetItem;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.*;
 
-public class StaffCommand implements CommandExecutor {
+public class StaffCommand extends GetItem implements CommandExecutor {
 
     // Kill Item
     private static ItemStack ItemName;
@@ -30,24 +30,59 @@ public class StaffCommand implements CommandExecutor {
                 staffActive.put(((Player) commandSender).getUniqueId(), true);
                 player.sendMessage("§8[§eCrom§6Chat§8] §aTu es passé en mode staff");
 
-                killItem();
-                player.getInventory().addItem(ItemName);
-                flyItem();
-                player.getInventory().addItem(ItemName);
-                godItem();
-                player.getInventory().addItem(ItemName);
-                speedItem();
-                player.getInventory().addItem(ItemName);
-                knockbackItem();
-                player.getInventory().addItem(ItemName);
-                cpsItem();
-                player.getInventory().addItem(ItemName);
-                vanishItem();
-                player.getInventory().addItem(ItemName);
-                randomteleportItem();
-                player.getInventory().addItem(ItemName);
-                invseeItem();
-                player.getInventory().addItem(ItemName);
+                player.getInventory().addItem(
+                        getItem(new ItemStack(Material.SHEARS), "§cTue un joueur",
+                                "§b",
+                                "§eCet objet permet de §atuer un joueur",
+                                "§elorsque tu effectues un §aclique droit",
+                                "§esur le §ajoueur concerné",
+                                "§b"),
+                        getItem(new ItemStack(Material.FEATHER), "§bActive le fly",
+                                "§b",
+                                "§eCet objet permet §ad'activer le fly §esur",
+                                "§ele serveur, clique droit pour §aactiver",
+                                "§aou désactiver",
+                                "§b"),
+                        getItem(new ItemStack(Material.SHEARS), "§eActive le God",
+                                "§b",
+                                "§eCet objet permet §ad'activer le God §esur",
+                                "§ele serveur, clique droit pour §aactiver",
+                                "§aou désactiver",
+                                "§b"),
+                        getItem(new ItemStack(Material.NETHER_STAR), "§eActive le Speed",
+                                "§b",
+                                "§eCet objet permet §ad'avoir Speed 2 §esur",
+                                "§ele serveur, clique droit pour §aactiver",
+                                "§aou désactiver",
+                                "§b"),
+                        getItem(new ItemStack(Material.STICK), "§eKnockBack Test",
+                                "§b",
+                                "§aClique droit sur un joueur §epour savoir",
+                                "§esi il prend §abien des knockbacks §esur",
+                                "§ele serveur",
+                                "§b"),
+                        getItem(new ItemStack(Material.COMPASS), "§eCPS Test",
+                                "§b",
+                                "§aClique droit sur un joueur §epour savoir le",
+                                "§anombre de CPS §equ'il effectue actuellement.",
+                                "§b"),
+                        getItem(new ItemStack(Material.REDSTONE), "§2Vanish",
+                                "§b",
+                                "§aClique droit pour §aactiver/désactiver §ele §avanish",
+                                "§esur le serveur.",
+                                "§b"),
+                        getItem(new ItemStack(Material.WATCH), "§dTéléportation Aléatoire",
+                                "§b",
+                                "§aClique droit §epour te §atéléporter §eà un joueur",
+                                "§aaléatoire sur le serveur.",
+                                "§b"),
+                        getItem(new ItemStack(Material.CHEST), "§dOuvrir l'inventaire",
+                                "§b",
+                                "§aClique gauche/droit §epour ouvrir l'inventaire",
+                                "§ed'un joueur et §avoir son contenu.",
+                                "§b"));
+
+
 
                 // Activation of fly, vanish and god
                 player.getServer().dispatchCommand(player, "fly on");
@@ -58,7 +93,7 @@ public class StaffCommand implements CommandExecutor {
                 ((Player) commandSender).getInventory().clear();
                 staffActive.put(player.getUniqueId(), false);
 
-                // Desactivation of fly, vanish and god
+                // Deactivation of fly, vanish and god
                 player.getServer().dispatchCommand(player, "fly off");
                 player.getServer().dispatchCommand(player, "vanish off");
                 player.getServer().dispatchCommand(player, "god off");
@@ -70,145 +105,5 @@ public class StaffCommand implements CommandExecutor {
             player.sendMessage("§8[§eCrom§6Chat§8] §cCette commande est inconnue");
             return false;
         }
-    }
-
-    private void killItem(){
-        ItemName = new ItemStack(Material.SHEARS);
-        ItemLore = new ArrayList<>();
-
-        ItemMeta killMeta = ItemName.getItemMeta();
-        killMeta.setDisplayName("§cTue un joueur"); // You should use color codes with § symbol
-        ItemLore.add("§b");
-        ItemLore.add("§eCet objet permet de §atuer un joueur");
-        ItemLore.add("§elorsque tu effectues un §aclique droit");
-        ItemLore.add("§esur le §ajoueur concerné");
-        ItemLore.add("§b");
-        killMeta.setLore(ItemLore);
-
-        ItemName.setItemMeta(killMeta);
-    }
-
-    private void flyItem(){
-        ItemName = new ItemStack(Material.FEATHER);
-        ItemLore = new ArrayList<>();
-
-        ItemMeta killMeta = ItemName.getItemMeta();
-        killMeta.setDisplayName("§bActive le fly");
-        ItemLore.add("§b");
-        ItemLore.add("§eCet objet permet §ad'activer le fly §esur");
-        ItemLore.add("§ele serveur, clique droit pour §aactiver");
-        ItemLore.add("§aou désactiver");
-        ItemLore.add("§b");
-        killMeta.setLore(ItemLore);
-
-        ItemName.setItemMeta(killMeta);
-    }
-
-    private void godItem(){
-        ItemName = new ItemStack(Material.NETHER_STAR);
-        ItemLore = new ArrayList<>();
-
-        ItemMeta killMeta = ItemName.getItemMeta();
-        killMeta.setDisplayName("§eActive le God");
-        ItemLore.add("§b");
-        ItemLore.add("§eCet objet permet §ad'activer le God §esur");
-        ItemLore.add("§ele serveur, clique droit pour §aactiver");
-        ItemLore.add("§aou désactiver");
-        ItemLore.add("§b");
-        killMeta.setLore(ItemLore);
-
-        ItemName.setItemMeta(killMeta);
-    }
-
-    private void speedItem(){
-        ItemName = new ItemStack(Material.SUGAR);
-        ItemLore = new ArrayList<>();
-
-        ItemMeta killMeta = ItemName.getItemMeta();
-        killMeta.setDisplayName("§eActive le Speed");
-        ItemLore.add("§b");
-        ItemLore.add("§eCet objet permet §ad'avoir Speed 2 §esur");
-        ItemLore.add("§ele serveur, clique droit pour §aactiver");
-        ItemLore.add("§aou désactiver");
-        ItemLore.add("§b");
-        killMeta.setLore(ItemLore);
-
-        ItemName.setItemMeta(killMeta);
-    }
-
-    private void knockbackItem(){
-        ItemName = new ItemStack(Material.STICK);
-        ItemLore = new ArrayList<>();
-
-        ItemMeta killMeta = ItemName.getItemMeta();
-        killMeta.setDisplayName("§eKnockBack Test");
-        ItemLore.add("§b");
-        ItemLore.add("§aClique droit sur un joueur §epour savoir");
-        ItemLore.add("§esi il prend §abien des knockbacks §esur");
-        ItemLore.add("§ele serveur");
-        ItemLore.add("§b");
-        killMeta.setLore(ItemLore);
-
-        ItemName.setItemMeta(killMeta);
-    }
-
-    private void cpsItem(){
-        ItemName = new ItemStack(Material.COMPASS);
-        ItemLore = new ArrayList<>();
-
-        ItemMeta killMeta = ItemName.getItemMeta();
-        killMeta.setDisplayName("§eCPS Test");
-        ItemLore.add("§b");
-        ItemLore.add("§aClique droit sur un joueur §epour savoir le");
-        ItemLore.add("§anombre de CPS §equ'il effectue actuellement.");
-        ItemLore.add("§b");
-        killMeta.setLore(ItemLore);
-
-        ItemName.setItemMeta(killMeta);
-    }
-
-    private void vanishItem(){
-        ItemName = new ItemStack(Material.REDSTONE);
-        ItemLore = new ArrayList<>();
-
-        ItemMeta killMeta = ItemName.getItemMeta();
-        killMeta.setDisplayName("§2Vanish");
-        ItemLore.add("§b");
-        ItemLore.add("§aClique droit pour §aactiver/désactiver §ele §avanish");
-        ItemLore.add("§esur le serveur.");
-        ItemLore.add("§b");
-        killMeta.setLore(ItemLore);
-
-        ItemName.setItemMeta(killMeta);
-    }
-
-    private void randomteleportItem(){
-        ItemName = new ItemStack(Material.WATCH);
-        ItemLore = new ArrayList<>();
-
-        ItemMeta killMeta = ItemName.getItemMeta();
-        killMeta.setDisplayName("§dTéléportation Aléatoire");
-        ItemLore.add("§b");
-        ItemLore.add("§aClique droit §epour te §atéléporter §eà un joueur");
-        ItemLore.add("§aaléatoire sur le serveur.");
-        ItemLore.add("§b");
-        killMeta.setLore(ItemLore);
-
-        ItemName.setItemMeta(killMeta);
-    }
-
-    private void invseeItem(){
-        ItemName = new ItemStack(Material.CHEST);
-        ItemLore = new ArrayList<>();
-
-        ItemMeta killMeta = ItemName.getItemMeta();
-        killMeta.setDisplayName("§dOuvrir l'inventaire");
-        ItemLore.add("§b");
-        ItemLore.add("§aClique gauche/droit §epour ouvrir l'inventaire");
-        ItemLore.add("§ed'un joueur et §avoir son contenu.");
-        ItemLore.add("§b");
-        killMeta.setLore(ItemLore);
-
-        ItemName.setItemMeta(killMeta);
     }
 }
