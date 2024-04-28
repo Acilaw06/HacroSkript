@@ -1,6 +1,7 @@
 package fr.acilaw.hacrostaff;
 
-import fr.acilaw.hacrostaff.Staff.PunishGui;
+import fr.acilaw.hacrostaff.Staff.Punish.PunishGui;
+import fr.acilaw.hacrostaff.Staff.Punish.PunishGuiTime;
 import fr.acilaw.hacrostaff.Staff.StaffCommand;
 import fr.acilaw.hacrostaff.Staff.StaffEvents;
 import fr.acilaw.hacrostaff.Staff.RandomTeleportPlayer;
@@ -15,6 +16,7 @@ public class HacroStaff extends JavaPlugin implements Listener {
         this.getCommand("staff").setExecutor(new StaffCommand());
         this.getCommand("randomteleportplayer").setExecutor(new RandomTeleportPlayer());
         this.getCommand("punish").setExecutor(new PunishGui(this));
+        this.getCommand("punishtime").setExecutor(new PunishGuiTime());
         getServer().getPluginManager().registerEvents(new StaffEvents(),this);
     }
 

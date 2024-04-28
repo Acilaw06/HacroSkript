@@ -1,4 +1,4 @@
-package fr.acilaw.hacrostaff.Staff;
+package fr.acilaw.hacrostaff.Staff.Punish;
 
 import fr.acilaw.hacrostaff.HacroStaff;
 import fr.acilaw.hacrostaff.Staff.ItemBuilder.GetItem;
@@ -13,8 +13,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-
-
 
 public class PunishGui extends GetItem implements Listener, CommandExecutor {
 

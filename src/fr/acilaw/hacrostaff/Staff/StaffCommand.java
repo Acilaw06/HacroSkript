@@ -12,10 +12,6 @@ import java.util.*;
 
 public class StaffCommand extends GetItem implements CommandExecutor {
 
-    // Kill Item
-    private static ItemStack ItemName;
-    private static ArrayList<String> ItemLore;
-
     public HashMap<UUID, Boolean> staffActive = new HashMap<>();
 
     @Override
