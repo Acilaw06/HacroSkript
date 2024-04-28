@@ -1,9 +1,11 @@
 name: HacroStaff
 version: 1.0
-main: fr.acilaw.hacrostaff.Main
+main: fr.acilaw.hacrostaff.HacroStaff
 author: Acilaw
 commands:
   staff:
     description: inventaire staff pour les modérateurs
   randomTeleportPlayer:
     description: permet de se tp à un joueur aléatoire
+  punish:
+    description: ouvre un menu permettant de faire certaines actions sur un joueur.
