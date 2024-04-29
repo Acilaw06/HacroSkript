@@ -9,3 +9,8 @@
 
   - description: offre un inventaire complet de modération
   - permission: group.moderateur
+
+- /punish
+
+  - description: ouvre un menu pour bannir, mute et avertir un joueur efficacement
+  - permission: group.moderateur
