@@ -1,7 +1,5 @@
 package fr.acilaw.hacrostaff.Punish;
 
-
-import fr.acilaw.hacrostaff.ItemBuilder.GetItem;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
@@ -12,14 +10,10 @@ import org.bukkit.event.Listener;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-public class PunishGuiTime extends GetItem implements CommandExecutor, Listener {
+public class PunishGuiTime extends PunishGui implements CommandExecutor, Listener {
 
 
     public final String invName = "§2Choisir une durée";
-    public String duration;
-    public String punishedPlayer;
-    public String typeSanction;
-    public String motif;
 
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
@@ -47,9 +41,17 @@ public class PunishGuiTime extends GetItem implements CommandExecutor, Listener 
 
 
         Player player = (Player) commandSender;
-        typeSanction = strings[0];
+        sanctionType = strings[0];
         punishedPlayer = Bukkit.getPlayer(strings[1]).getName();
         motif = strings[2];
+
+
+        player.openInventory(punishGuiTime(player));
+        return true;
+    }
+
+
+    public Inventory punishGuiTime(Player player){
         Inventory inv = Bukkit.createInventory(player, 18, invName);
 
 
@@ -66,8 +68,7 @@ public class PunishGuiTime extends GetItem implements CommandExecutor, Listener 
         inv.setItem(10, getItem(new ItemStack(Material.PAPER), "§c1 an"));
         inv.setItem(11, getItem(new ItemStack(Material.PAPER), "§cDéfinitif"));
 
-        player.openInventory(inv);
-        return true;
+        return inv;
     }
 
 

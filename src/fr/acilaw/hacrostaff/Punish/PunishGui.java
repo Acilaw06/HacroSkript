@@ -17,9 +17,6 @@ public class PunishGui extends GetItem implements CommandExecutor {
     public String sanctionType;
     public String motif;
 
-    public PunishGui(){
-
-    }
 
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] args) {
@@ -40,8 +37,12 @@ public class PunishGui extends GetItem implements CommandExecutor {
         Player player = (Player) commandSender;
         punishedPlayer = Bukkit.getPlayer(args[0]).getName();
 
-        // Create Punish Menu
+        player.openInventory(punishGui(player));
 
+        return true;
+    }
+
+    public Inventory punishGui(Player player){
         Inventory inv = Bukkit.createInventory(player, 27, "§cPunish Menu");
 
         // Create Item
@@ -69,8 +70,6 @@ public class PunishGui extends GetItem implements CommandExecutor {
                 inv.setItem(i, getItem(new ItemStack(Material.STAINED_GLASS_PANE,1, (short) 4), "", ""));
             }
         }
-        player.openInventory(inv);
-
-        return true;
+        return inv;
     }
 }

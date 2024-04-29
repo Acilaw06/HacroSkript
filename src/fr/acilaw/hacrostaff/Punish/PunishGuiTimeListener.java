@@ -33,7 +33,7 @@ public class PunishGuiTimeListener extends PunishGuiTime implements Listener {
                 duration = ""; break;
         }
 
-        player.getServer().dispatchCommand(player,typeSanction + " " + punishedPlayer + " " + duration + " " + motif);
+        player.getServer().dispatchCommand(player,sanctionType + " " + punishedPlayer + " " + duration + " " + motif);
         player.closeInventory();
 
         event.setCancelled(true);
