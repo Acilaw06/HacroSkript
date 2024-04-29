@@ -44,7 +44,7 @@ public class PunishGui extends GetItem implements Listener, CommandExecutor {
                 player.closeInventory();
                 player.getServer().dispatchCommand(player,"punishtime mute " + punishedPlayer + " Languages_Inappropriés");
                 break;
-            case 19:
+            case 20:
                 player.closeInventory();
                 player.getServer().dispatchCommand(player,"warn " + punishedPlayer + " Languages_Innapropriés");
                 break;
@@ -67,7 +67,7 @@ public class PunishGui extends GetItem implements Listener, CommandExecutor {
         }
 
         Player player = (Player) commandSender;
-        punishedPlayer = Bukkit.getPlayer(args[0]).getDisplayName();
+        punishedPlayer = Bukkit.getPlayer(args[0]).getName();
 
         // Create Punish Menu
 

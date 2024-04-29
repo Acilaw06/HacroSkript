@@ -49,7 +49,7 @@ public class PunishGuiTime extends GetItem implements CommandExecutor, Listener 
 
         Player player = (Player) commandSender;
         typeSanction = strings[0];
-        punishedPlayer = Bukkit.getPlayer(strings[1]).getDisplayName();
+        punishedPlayer = Bukkit.getPlayer(strings[1]).getName();
         motif = strings[2];
         Inventory inv = Bukkit.createInventory(player, 18, invName);
 
