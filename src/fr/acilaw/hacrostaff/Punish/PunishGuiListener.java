@@ -5,7 +5,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 
-public class PunishGuiListener extends PunishGui implements Listener {
+public class PunishGuiListener extends PunishGuiTimeAndSanction implements Listener {
 
     @EventHandler
     public void onInventoryClick(InventoryClickEvent event){
@@ -18,20 +18,21 @@ public class PunishGuiListener extends PunishGui implements Listener {
 
         switch (slot){
             case 9:
-                player.closeInventory();
-                player.getServer().dispatchCommand(player, "punishtime ban " + punishedPlayer + " Cheat");
-                break;
             case 10:
-                player.closeInventory();
-                player.getServer().dispatchCommand(player,"punishtime ban " + punishedPlayer + " Exploitation_de_Bugs");
-                break;
             case 11:
+                sanctionType = "ban";
                 player.closeInventory();
-                player.getServer().dispatchCommand(player,"punishtime mute " + punishedPlayer + " Languages_Inappropriés");
+                player.openInventory(punishGuiTime(player));
                 break;
             case 20:
+                sanctionType = "mute";
                 player.closeInventory();
-                player.getServer().dispatchCommand(player,"warn " + punishedPlayer + " Languages_Innapropriés");
+                player.openInventory(punishGuiTime(player));
+                break;
+            case 29:
+                sanctionType = "warn";
+                player.closeInventory();
+                player.openInventory(punishGuiSanction(player));
                 break;
         }
 

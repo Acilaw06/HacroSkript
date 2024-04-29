@@ -5,12 +5,12 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 
-public class PunishGuiTimeListener extends PunishGuiTime implements Listener {
+public class PunishGuiTimeListener extends PunishGuiTimeAndSanction implements Listener {
 
     @EventHandler
     public void onInventoryClick(InventoryClickEvent event) {
 
-        if(!(event.getView().getTitle().equals(invName))) {
+        if(!(event.getView().getTitle().equals(invTimeName))) {
             return;
         }
 
@@ -33,8 +33,8 @@ public class PunishGuiTimeListener extends PunishGuiTime implements Listener {
                 duration = ""; break;
         }
 
-        player.getServer().dispatchCommand(player,sanctionType + " " + punishedPlayer + " " + duration + " " + motif);
         player.closeInventory();
+        player.openInventory(punishGuiSanction(player));
 
         event.setCancelled(true);
     }

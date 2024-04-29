@@ -1,10 +1,7 @@
 package fr.acilaw.hacrostaff;
 
 import fr.acilaw.hacrostaff.Command.RandomTeleportPlayer;
-import fr.acilaw.hacrostaff.Punish.PunishGui;
-import fr.acilaw.hacrostaff.Punish.PunishGuiListener;
-import fr.acilaw.hacrostaff.Punish.PunishGuiTime;
-import fr.acilaw.hacrostaff.Punish.PunishGuiTimeListener;
+import fr.acilaw.hacrostaff.Punish.*;
 import fr.acilaw.hacrostaff.Staff.StaffCommand;
 import fr.acilaw.hacrostaff.Staff.StaffEvents;
 import org.bukkit.event.Listener;
@@ -29,8 +26,12 @@ public class HacroStaff extends JavaPlugin implements Listener {
         this.getCommand("punish").setExecutor(new PunishGui());
         getServer().getPluginManager().registerEvents(new PunishGuiListener(),this);
 
-        this.getCommand("punishtime").setExecutor(new PunishGuiTime());
+        // Punish Gui Time Listener
         getServer().getPluginManager().registerEvents(new PunishGuiTimeListener(),this);
+
+
+        // Punish Gui Sanction Listener
+        getServer().getPluginManager().registerEvents(new PunishGuiSanctionListener(),this);
     }
 
     @Override

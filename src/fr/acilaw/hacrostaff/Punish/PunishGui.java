@@ -12,10 +12,18 @@ import org.bukkit.inventory.ItemStack;
 
 public class PunishGui extends GetItem implements CommandExecutor {
 
-    public String punishedPlayer;
-    public String duration;
-    public String sanctionType;
-    public String motif;
+    public static String punishedPlayer;
+    public static String duration;
+    public static String sanctionType;
+    public static String motif;
+
+    public PunishGui(){
+        punishedPlayer = "";
+        duration = "";
+        sanctionType = "";
+        motif = "";
+    }
+
 
 
     @Override
@@ -43,7 +51,7 @@ public class PunishGui extends GetItem implements CommandExecutor {
     }
 
     public Inventory punishGui(Player player){
-        Inventory inv = Bukkit.createInventory(player, 27, "§cPunish Menu");
+        Inventory inv = Bukkit.createInventory(player, 36, "§cPunish Menu");
 
         // Create Item
 
@@ -61,8 +69,9 @@ public class PunishGui extends GetItem implements CommandExecutor {
 
 
         // Language Sanction Item
-        inv.setItem(11, getItem(new ItemStack(Material.PAPER), "§cMute", "§c", "§7▪ §eClique pour §achoisir la durée", "§eapproprié à la §asanction.", "§c"));
-        inv.setItem(20, getItem(new ItemStack(Material.BARRIER), "§cAvertissement", "§c", "§7▪ §eClique pour §asanctionner", "§ele joueur immédiatement", "§c"));
+        inv.setItem(11, getItem(new ItemStack(Material.IRON_FENCE), "§cBannissement", "§c", "§7▪ §eClique pour §asanctionner", "§ele joueur immédiatement", "§c"));
+        inv.setItem(20, getItem(new ItemStack(Material.PAPER), "§cMute", "§c", "§7▪ §eClique pour §achoisir la durée", "§eapproprié à la §asanction.", "§c"));
+        inv.setItem(29, getItem(new ItemStack(Material.BARRIER), "§cAvertissement", "§c", "§7▪ §eClique pour §asanctionner", "§ele joueur immédiatement", "§c"));
 
 
         for(int i = 1; i < inv.getSize(); i++){
@@ -72,4 +81,11 @@ public class PunishGui extends GetItem implements CommandExecutor {
         }
         return inv;
     }
+
+    public void executeCommand(Player player){
+
+        player.sendMessage(sanctionType + " " + punishedPlayer + " " + duration + " " + motif);
+        //player.getServer().dispatchCommand(player, sanctionType + " " + punishedPlayer + " " + duration + " " + motif);
+    }
+
 }
