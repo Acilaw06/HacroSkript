@@ -36,6 +36,11 @@ public class PunishGuiTime extends GetItem implements CommandExecutor, Listener 
             return true;
         }
 
+
+        if(!(commandSender.hasPermission("group.moderateur"))){
+            commandSender.sendMessage("§8[§eCrom§6Chat§8] §cTu n'as pas la permission de faire cette commande.");
+        }
+
         if(strings.length < 3){
             commandSender.sendMessage("§8[§eCrom§6Chat§8] §cTu dois choisir un type de sanction");
             return true;

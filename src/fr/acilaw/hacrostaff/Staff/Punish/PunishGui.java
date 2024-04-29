@@ -61,6 +61,10 @@ public class PunishGui extends GetItem implements Listener, CommandExecutor {
             return true;
         }
 
+        if(!(commandSender.hasPermission("group.moderateur"))){
+            commandSender.sendMessage("§8[§eCrom§6Chat§8] §cTu n'as pas la permission de faire cette commande.");
+        }
+
         if(args.length == 0 || Bukkit.getPlayer(args[0]) == null){
             commandSender.sendMessage("§8[§eCrom§6Chat§8] §cTu dois choisir un joueur.");
             return true;
