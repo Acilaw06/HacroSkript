@@ -1,6 +1,6 @@
 package fr.acilaw.hacrostaff.Punish;
 
-import fr.acilaw.hacrostaff.HacroStaff;
+
 import fr.acilaw.hacrostaff.ItemBuilder.GetItem;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -8,24 +8,18 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 public class PunishGuiTime extends GetItem implements CommandExecutor, Listener {
 
 
-    private final String invName = "§2Choisir une durée";
-    private String duration = "1d";
-    private String punishedPlayer;
-    private String typeSanction;
-    private String motif;
-
-    public PunishGuiTime(HacroStaff plugin) {
-        Bukkit.getPluginManager().registerEvents(this, plugin);
-    }
+    public final String invName = "§2Choisir une durée";
+    public String duration;
+    public String punishedPlayer;
+    public String typeSanction;
+    public String motif;
 
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
@@ -74,38 +68,6 @@ public class PunishGuiTime extends GetItem implements CommandExecutor, Listener 
 
         player.openInventory(inv);
         return true;
-    }
-
-    @EventHandler
-    public void onInventoryClick(InventoryClickEvent event) {
-
-        if(!(event.getView().getTitle().equals(invName))) {
-            return;
-        }
-
-        Player player = (Player) event.getWhoClicked();
-        int slot = event.getSlot();
-
-        switch(slot) {
-            case 0: duration = "30m"; break;
-            case 1: duration = "1h"; break;
-            case 2: duration = "6h"; break;
-            case 3: duration = "1d"; break;
-            case 4: duration = "7d"; break;
-            case 5: duration = "14d"; break;
-            case 6: duration = "1mo"; break;
-            case 7: duration = "2mo"; break;
-            case 8: duration = "3mo"; break;
-            case 9: duration = "6mo"; break;
-            case 10: duration = "1y"; break;
-            default:
-                duration = ""; break;
-        }
-
-        player.getServer().dispatchCommand(player,typeSanction + " " + punishedPlayer + " " + duration + " " + motif);
-        player.closeInventory();
-
-        event.setCancelled(true);
     }
 
 
