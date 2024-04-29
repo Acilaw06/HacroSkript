@@ -15,10 +15,10 @@ public class PunishGuiSanctionListener extends PunishGuiTimeAndSanction implemen
         }
 
         Player player = (Player) e.getWhoClicked();
-        int slot = e.getSlot();
 
         motif = e.getCurrentItem().getItemMeta().getDisplayName();
 
+        player.closeInventory();
         executeCommand(player);
 
         e.setCancelled(true);

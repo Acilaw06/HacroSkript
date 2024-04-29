@@ -18,19 +18,18 @@ public class PunishGuiTimeListener extends PunishGuiTimeAndSanction implements L
         int slot = event.getSlot();
 
         switch(slot) {
-            case 0: duration = "30m"; break;
-            case 1: duration = "1h"; break;
-            case 2: duration = "6h"; break;
-            case 3: duration = "1d"; break;
-            case 4: duration = "7d"; break;
-            case 5: duration = "14d"; break;
-            case 6: duration = "1mo"; break;
-            case 7: duration = "2mo"; break;
-            case 8: duration = "3mo"; break;
-            case 9: duration = "6mo"; break;
-            case 10: duration = "1y"; break;
-            default:
-                duration = ""; break;
+            case 19: duration = "30m"; break;
+            case 20: duration = "1h"; break;
+            case 21: duration = "6h"; break;
+            case 22: duration = "1d"; break;
+            case 23: duration = "7d"; break;
+            case 24: duration = "14d"; break;
+            case 25: duration = "1mo"; break;
+            case 28: duration = "2mo"; break;
+            case 29: duration = "3mo"; break;
+            case 30: duration = "6mo"; break;
+            case 31: duration = "1y"; break;
+            case 32: duration = ""; break;
         }
 
         player.closeInventory();

@@ -17,9 +17,7 @@ public class PunishGuiListener extends PunishGuiTimeAndSanction implements Liste
         int slot = event.getSlot();
 
         switch (slot){
-            case 9:
-            case 10:
-            case 11:
+            case 19:
                 sanctionType = "ban";
                 player.closeInventory();
                 player.openInventory(punishGuiTime(player));
@@ -29,7 +27,7 @@ public class PunishGuiListener extends PunishGuiTimeAndSanction implements Liste
                 player.closeInventory();
                 player.openInventory(punishGuiTime(player));
                 break;
-            case 29:
+            case 21:
                 sanctionType = "warn";
                 player.closeInventory();
                 player.openInventory(punishGuiSanction(player));
