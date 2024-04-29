@@ -1,6 +1,6 @@
 package fr.acilaw.hacrostaff.Staff;
 
-import fr.acilaw.hacrostaff.Staff.ItemBuilder.GetItem;
+import fr.acilaw.hacrostaff.ItemBuilder.GetItem;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;

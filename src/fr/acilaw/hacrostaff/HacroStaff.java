@@ -1,10 +1,10 @@
 package fr.acilaw.hacrostaff;
 
-import fr.acilaw.hacrostaff.Staff.Punish.PunishGui;
-import fr.acilaw.hacrostaff.Staff.Punish.PunishGuiTime;
+import fr.acilaw.hacrostaff.Command.RandomTeleportPlayer;
+import fr.acilaw.hacrostaff.Punish.PunishGui;
+import fr.acilaw.hacrostaff.Punish.PunishGuiTime;
 import fr.acilaw.hacrostaff.Staff.StaffCommand;
 import fr.acilaw.hacrostaff.Staff.StaffEvents;
-import fr.acilaw.hacrostaff.Staff.RandomTeleportPlayer;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 

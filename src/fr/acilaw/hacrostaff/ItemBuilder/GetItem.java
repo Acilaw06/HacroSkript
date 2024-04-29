@@ -1,4 +1,4 @@
-package fr.acilaw.hacrostaff.Staff.ItemBuilder;
+package fr.acilaw.hacrostaff.ItemBuilder;
 
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
