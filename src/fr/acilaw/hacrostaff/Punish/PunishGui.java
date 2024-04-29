@@ -79,8 +79,7 @@ public class PunishGui extends GetItem implements CommandExecutor {
 
     public void executeCommand(Player player){
 
-        player.sendMessage(sanctionType + " " + punishedPlayer + " " + duration + " " + motif);
-        //player.getServer().dispatchCommand(player, sanctionType + " " + punishedPlayer + " " + duration + " " + motif);
+        player.getServer().dispatchCommand(player, sanctionType + " " + punishedPlayer + " " + duration + " " + motif);
     }
 
 }
