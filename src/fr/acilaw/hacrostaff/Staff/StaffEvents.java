@@ -45,7 +45,7 @@ public class StaffEvents implements Listener {
             if (itemMeta != null && Objects.equals(itemMeta.getDisplayName(), "§eCPS Test")) {
                 if (event.getRightClicked() instanceof Player) {
                     Player touchedPlayer = (Player) event.getRightClicked();
-                    server.dispatchCommand(player,"vulcan cps " + touchedPlayer.getName());
+                    server.dispatchCommand(player,"cps " + touchedPlayer.getName());
                 }else{
                     player.sendMessage("§8[§eCrom§6Chat§8] §cVous devez toucher un joueur");
                 }

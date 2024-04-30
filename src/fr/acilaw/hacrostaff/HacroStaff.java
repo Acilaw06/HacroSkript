@@ -1,5 +1,6 @@
 package fr.acilaw.hacrostaff;
 
+import fr.acilaw.hacrostaff.Command.CpsCommand;
 import fr.acilaw.hacrostaff.Command.RandomTeleportPlayer;
 import fr.acilaw.hacrostaff.Punish.*;
 import fr.acilaw.hacrostaff.Staff.StaffCommand;
@@ -19,6 +20,7 @@ public class HacroStaff extends JavaPlugin implements Listener {
 
         // Command
         this.getCommand("randomteleportplayer").setExecutor(new RandomTeleportPlayer());
+        this.getCommand("cps").setExecutor(new CpsCommand(this));
 
 
         // Punish Command

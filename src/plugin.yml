@@ -9,3 +9,5 @@ commands:
     description: permet de se tp à un joueur aléatoire
   punish:
     description: ouvre un menu permettant de faire certaines actions sur un joueur.
+  cps:
+    description: compte le cps d'un joueur

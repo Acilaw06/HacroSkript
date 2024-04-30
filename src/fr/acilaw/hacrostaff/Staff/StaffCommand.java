@@ -5,6 +5,8 @@ import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
@@ -51,7 +53,7 @@ public class StaffCommand extends GetItem implements CommandExecutor {
                                 "§ele serveur, clique droit pour §aactiver",
                                 "§aou désactiver",
                                 "§b"),
-                        getItem(new ItemStack(Material.STICK), "§eKnockBack Test",
+                        getItemWithEnchantment(new ItemStack(Material.STICK), Enchantment.KNOCKBACK,5,"§eKnockBack Test",
                                 "§b",
                                 "§aClique droit sur un joueur §epour savoir",
                                 "§esi il prend §abien des knockbacks §esur",
