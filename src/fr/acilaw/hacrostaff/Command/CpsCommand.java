@@ -33,21 +33,23 @@ public class CpsCommand implements CommandExecutor, Listener {
             return false;
         }
 
-        Player player = (Player) sender;
-        if (args.length != 1) {
-            player.sendMessage("Usage: /cps <player>");
-            return false;
+        if(sender.hasPermission("group.moderateur")) {
+            Player player = (Player) sender;
+            if (args.length != 1) {
+                player.sendMessage("Usage: /cps <player>");
+                return false;
+            }
+
+            Player target = player.getServer().getPlayer(args[0]);
+            if (target == null) {
+                player.sendMessage("Joueur pas trouvé!");
+                return false;
+            }
+
+            startCpsTracking(target, player);
+
+            player.sendMessage("§8[§eHacro§6Staff§8] §aLancement du test pour " + target.getName() + "...");
         }
-
-        Player target = player.getServer().getPlayer(args[0]);
-        if (target == null) {
-            player.sendMessage("Joueur pas trouvé!");
-            return false;
-        }
-
-        startCpsTracking(target, player);
-
-        player.sendMessage("§8[§eHacro§6Staff§8] §aLancement du test pour " + target.getName() + "...");
         return true;
     }
 

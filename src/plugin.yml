@@ -7,6 +7,8 @@ commands:
     description: inventaire staff pour les modérateurs
   randomTeleportPlayer:
     description: permet de se tp à un joueur aléatoire
+  freeze:
+    description: freeze un joueur
   punish:
     description: ouvre un menu permettant de faire certaines actions sur un joueur.
   cps:
