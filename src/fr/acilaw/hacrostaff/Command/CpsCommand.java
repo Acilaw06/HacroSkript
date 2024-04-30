@@ -17,6 +17,7 @@ import java.util.UUID;
 
 public class CpsCommand implements CommandExecutor, Listener {
 
+    private boolean testBool = false;
     private static HashMap<UUID, Integer> cpsMap = new HashMap<>();
     private int timer = 10;
 
@@ -54,6 +55,7 @@ public class CpsCommand implements CommandExecutor, Listener {
         new BukkitRunnable() {
             @Override
             public void run() {
+                testBool = true;
                 if (timer <= 0) {
                     cancel();
                     int cps = cpsMap.getOrDefault(target.getUniqueId(), 0) / 10;
@@ -61,6 +63,7 @@ public class CpsCommand implements CommandExecutor, Listener {
                     cpsMap.remove(target.getUniqueId());
                 } else {
                     timer--;
+                    testBool = false;
                     int cps = cpsMap.getOrDefault(target.getUniqueId(), 0) / (10-timer);
                     player.sendMessage("§8[§eHacro§6Staff§8] §cLe joueur " + target.getName() + " fait " + cps + " CPS.");
                 }
@@ -70,8 +73,10 @@ public class CpsCommand implements CommandExecutor, Listener {
 
     @EventHandler
     public void onPlayerInteract(PlayerInteractEvent event) {
-        Player player = event.getPlayer();
-        int count = cpsMap.getOrDefault(player.getUniqueId(), 0);
-        cpsMap.put(player.getUniqueId(), count + 1);
+        if(testBool){
+            Player player = event.getPlayer();
+            int count = cpsMap.getOrDefault(player.getUniqueId(), 0);
+            cpsMap.put(player.getUniqueId(), count + 1);
+        }
     }
 }
