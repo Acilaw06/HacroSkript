@@ -31,13 +31,17 @@ public class FreezeCommand implements CommandExecutor {
                     target.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS,Integer.MAX_VALUE,255));
                 }
                 else{
+                    freezeState = false;
                     target.removePotionEffect(PotionEffectType.SLOW);
                     target.removePotionEffect(PotionEffectType.BLINDNESS);
+                    target.sendMessage("§8[§c§lSanction§8] §aVous avez été défreeze par un staff.");
                 }
+            } else {
+                commandSender.sendMessage("§8[§eCrom§6Chat§8] §cLe joueur spécifié n'est pas en ligne !");
             }
-
+        } else {
+            commandSender.sendMessage("§8[§eCrom§6Chat§8] §cUtilisation: /freeze <joueur>");
         }
-
         return true;
     }
 }

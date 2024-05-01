@@ -13,60 +13,68 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 public class CpsCommand implements CommandExecutor, Listener {
 
-    private boolean testBool = false;
-    private static HashMap<UUID, Integer> cpsMap = new HashMap<>();
-    private int timer = 10;
+    private static final Map<UUID, Integer> cpsMap = new HashMap<>();
+    private static final Map<UUID, Integer> cpsCountdown = new HashMap<>();
 
     public CpsCommand(Plugin plugin) {
         Bukkit.getPluginManager().registerEvents(this, plugin);
     }
 
     @Override
-    public boolean onCommand(CommandSender sender, Command command, String s, String[] args) {
-
+    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (!(sender instanceof Player)) {
             sender.sendMessage("Seuls des joueurs peuvent faire cette commande.");
             return false;
         }
 
-        if(sender.hasPermission("group.moderateur")) {
-            Player player = (Player) sender;
-            if (args.length != 1) {
-                player.sendMessage("Usage: /cps <player>");
-                return false;
-            }
-
-            Player target = player.getServer().getPlayer(args[0]);
-            if (target == null) {
-                player.sendMessage("Joueur pas trouvé!");
-                return false;
-            }
-
-            startCpsTracking(target, player);
-
-            player.sendMessage("§8[§eHacro§6Staff§8] §aLancement du test pour " + target.getName() + "...");
+        if (!sender.hasPermission("group.moderateur")) {
+            sender.sendMessage("§cVous n'avez pas la permission d'exécuter cette commande.");
+            return false;
         }
+
+        if (args.length != 1) {
+            sender.sendMessage("Usage: /cps <player>");
+            return false;
+        }
+
+        Player target = Bukkit.getPlayer(args[0]);
+        if (target == null || !target.isOnline()) {
+            sender.sendMessage("Joueur pas trouvé ou pas en ligne !");
+            return false;
+        }
+
+        startCpsTracking(target, (Player) sender);
+        sender.sendMessage("§8[§eHacro§6Staff§8] §aLancement du test pour " + target.getName() + "...");
+
         return true;
     }
 
     public void startCpsTracking(Player target, Player player) {
+        if (cpsCountdown.containsKey(target.getUniqueId())) {
+            player.sendMessage("§cLe test est déjà en cours pour ce joueur !");
+            return;
+        }
+
+        cpsCountdown.put(target.getUniqueId(), 10);
+
         new BukkitRunnable() {
             @Override
             public void run() {
-                testBool = true;
-                if (timer <= 0) {
+                int countdown = cpsCountdown.get(target.getUniqueId());
+                if (countdown <= 0) {
                     cancel();
                     int cps = cpsMap.getOrDefault(target.getUniqueId(), 0) / 10;
                     player.sendMessage("§8[§eHacro§6Staff§8] §cRésultat: Le joueur " + target.getName() + " a fait " + cps + " CPS.");
                     cpsMap.remove(target.getUniqueId());
+                    cpsCountdown.remove(target.getUniqueId());
                 } else {
-                    timer--;
-                    testBool = false;
-                    int cps = cpsMap.getOrDefault(target.getUniqueId(), 0) / (10-timer);
+                    cpsCountdown.put(target.getUniqueId(), countdown - 1);
+                    int cps = cpsMap.getOrDefault(target.getUniqueId(), 0) / (10 - countdown);
                     player.sendMessage("§8[§eHacro§6Staff§8] §cLe joueur " + target.getName() + " fait " + cps + " CPS.");
                 }
             }
@@ -75,8 +83,8 @@ public class CpsCommand implements CommandExecutor, Listener {
 
     @EventHandler
     public void onPlayerInteract(PlayerInteractEvent event) {
-        if(testBool){
-            Player player = event.getPlayer();
+        Player player = event.getPlayer();
+        if (cpsCountdown.containsKey(player.getUniqueId())) {
             int count = cpsMap.getOrDefault(player.getUniqueId(), 0);
             cpsMap.put(player.getUniqueId(), count + 1);
         }
