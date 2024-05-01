@@ -33,18 +33,18 @@ public class CpsCommand implements CommandExecutor, Listener {
         }
 
         if (!sender.hasPermission("group.moderateur")) {
-            sender.sendMessage("§cVous n'avez pas la permission d'exécuter cette commande.");
+            sender.sendMessage("§8[§eHacro§6Staff§8] §cVous n'avez pas la permission d'exécuter cette commande.");
             return false;
         }
 
         if (args.length != 1) {
-            sender.sendMessage("Usage: /cps <player>");
+            sender.sendMessage("§8[§eHacro§6Staff§8] §cUsage: /cps <player>");
             return false;
         }
 
         Player target = Bukkit.getPlayer(args[0]);
         if (target == null || !target.isOnline()) {
-            sender.sendMessage("Joueur pas trouvé ou pas en ligne !");
+            sender.sendMessage("§8[§eHacro§6Staff§8] §cJoueur pas trouvé ou pas en ligne !");
             return false;
         }
 
@@ -56,7 +56,7 @@ public class CpsCommand implements CommandExecutor, Listener {
 
     public void startCpsTracking(Player target, Player player) {
         if (cpsCountdown.containsKey(target.getUniqueId())) {
-            player.sendMessage("§cLe test est déjà en cours pour ce joueur !");
+            player.sendMessage("§8[§eHacro§6Staff§8] §cLe test est déjà en cours pour ce joueur !");
             return;
         }
 
