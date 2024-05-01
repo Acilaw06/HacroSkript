@@ -69,16 +69,20 @@ public class CpsCommand implements CommandExecutor, Listener {
                 if (countdown <= 0) {
                     cancel();
                     int cps = cpsMap.getOrDefault(target.getUniqueId(), 0) / 10;
-                    player.sendMessage("§8[§eHacro§6Staff§8] §cRésultat: Le joueur " + target.getName() + " a fait " + cps + " CPS.");
+                    player.sendMessage("§8[§eHacro§6Staff§8] §cRésultat: Le joueur " + target.getName() + " a une moyenne de " + cps + " CPS.");
                     cpsMap.remove(target.getUniqueId());
                     cpsCountdown.remove(target.getUniqueId());
                 } else {
                     cpsCountdown.put(target.getUniqueId(), countdown - 1);
-                    int cps = cpsMap.getOrDefault(target.getUniqueId(), 0) / (10 - countdown);
+                    int cps = cpsMap.getOrDefault(target.getUniqueId(), 0);
+                    if(cps == 0){
+                        cps = 0;
+                    }
+                    cps = cps / 10;
                     player.sendMessage("§8[§eHacro§6Staff§8] §cLe joueur " + target.getName() + " fait " + cps + " CPS.");
                 }
             }
-        }.runTaskTimer(HacroStaff.getPlugin(HacroStaff.class), 0, 20); // 20 ticks = 1 seconde
+        }.runTaskTimer(HacroStaff.getPlugin(HacroStaff.class), 0, 20);
     }
 
     @EventHandler
